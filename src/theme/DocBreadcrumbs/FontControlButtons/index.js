@@ -11,6 +11,7 @@ function incrementFactor() {
     factor += 0.1;
     if (factor >= 0.5 && factor <= 2.0) {
         doc.style.setProperty('--custom-font-factor', factor);
+        window.localStorage.setItem('fontSizeFactor',factor);
     }
 }
 function decrementFactor() {
@@ -19,6 +20,7 @@ function decrementFactor() {
     factor -= 0.1;
     if (factor >= 0.5 && factor <= 2.0) {
         doc.style.setProperty('--custom-font-factor', factor);
+        window.localStorage.setItem('fontSizeFactor',factor)
     }
 }
 
@@ -47,10 +49,12 @@ function invertFontWeight() {
     if (fontWeight === "bold") {
         doc.style.setProperty("--custom-font-weight", "normal");
         button.classList.replace(styles.bold, styles.outlined);
+        window.localStorage.setItem('fontWeight',"normal")
     }
     else {
         doc.style.setProperty("--custom-font-weight", "bold");
         button.classList.replace(styles.outlined, styles.bold);
+        window.localStorage.setItem('fontWeight',"bold")
     }
 
 }
@@ -81,6 +85,7 @@ function changeLineHeight(){
             break;
     }
     doc.style.setProperty("--custom-line-height",lineHeight);
+    window.localStorage.setItem('lineHeight',lineHeight)
 }
 
 export function LineHeightButton(){
@@ -93,6 +98,15 @@ export function LineHeightButton(){
 
 
     )
+}
+
+function LoadFontSettingsFromLocalStorage(){
+    const style = getComputedStyle(document.querySelector(":root"))
+    const storage = window.localStorage
+    style.setProperty("--custom-line-height",storage.getItem("lineHeight"))
+    style.setProperty("--custom-font-weight",storage.getItem("fontWeight"))
+    style.setProperty("--custom-font-factor",storage.getItem("fontSizeFactor"))
+    console.log("styles loaded")
 }
 
 export default function FontControlButtons() {

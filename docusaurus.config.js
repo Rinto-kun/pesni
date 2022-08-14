@@ -204,9 +204,36 @@ const config = {
             //     }
             //   }
         // ],
+        async function loadFontSettings(context,options){
+            return{
+                name: 'load-font-settings',
+                injectHtmlTags({content}){
+                    return {
+                        preBodyTags:[
+                            {
+                                tagName: 'script',
+                                innerHTML: `function loadFontSettingsFromLocalStorage(){
+                                        const doc = document.querySelector(":root");
+                                        const storage = window.localStorage;
+                                        doc.style.setProperty("--custom-line-height",storage.getItem("lineHeight"));
+                                        doc.style.setProperty("--custom-font-weight",storage.getItem("fontWeight"));
+                                        doc.style.setProperty("--custom-font-factor",storage.getItem("fontSizeFactor"));
+                                    }
+                                    loadFontSettingsFromLocalStorage();
+                                    `
+                            }
+                        ]
+
+                    }
+                }
+                
+            }
+        }
+        
     ],
     themes:[
         [
+            // The search is implemented as a theme rather than plugin.
             require.resolve("@easyops-cn/docusaurus-search-local"),
             {
               // ... Your options.
@@ -214,12 +241,9 @@ const config = {
               indexBlog:false,
               docsRouteBasePath: '/',
               hashed: true,
+              // Selecting Russian as there is no Bulgarian.
               language: ["ru"],
               highlightSearchTermsOnTargetPage:false,
-              // For Docs using Chinese, The `language` is recommended to set to:
-              // ```
-              // language: ["en", "zh"],
-              // ```
             },
         ]
     ]
