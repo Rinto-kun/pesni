@@ -73,3 +73,10 @@ ol {
 .markdown>* {
     line-height: var(--custom-line-height);
 }
+
+blockquote {
+    color: inherit;
+    border-left: inherit;
+    box-shadow: inherit;
+    font-size: inherit;
+}
