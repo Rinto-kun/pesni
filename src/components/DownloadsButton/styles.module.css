@@ -1,0 +1,9 @@
+.downloadsbutton{
+    margin-top:4rem;
+    margin-right:2rem;
+    display: inline-block;
+}
+
+.downloadsbutton > a{
+    width: 10rem;
+}
