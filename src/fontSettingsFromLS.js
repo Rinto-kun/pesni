@@ -4,6 +4,6 @@ function loadFontSettingsFromLocalStorage(){
     style.setProperty("--custom-line-height",storage.getItem("lineHeight"));
     style.setProperty("--custom-font-weight",storage.getItem("fontWeight"));
     style.setProperty("--custom-font-factor",storage.getItem("fontSizeFactor"));
-    console.log("styles loaded");
+    // console.log("styles loaded");
 }
 module.exports = loadFontSettingsFromLocalStorage;

@@ -5,22 +5,15 @@ import {
 } from '@docusaurus/theme-common';
 import styles from './styles.module.css';
 
-function incrementFactor() {
+function incrementDecrementFactor(increment) {
     const doc = document.querySelector(":root");
-    var factor = parseFloat(getComputedStyle(doc).getPropertyValue("--custom-font-factor"));
-    factor += 0.1;
-    if (factor >= 0.5 && factor <= 2.0) {
+    let factor = parseFloat(getComputedStyle(doc).getPropertyValue("--custom-font-factor"));
+    
+    factor = increment ? factor + 0.1 : factor - 0.1;
+
+    if (factor >= 0.8 && factor <= 2.5) {
         doc.style.setProperty('--custom-font-factor', factor);
         window.localStorage.setItem('fontSizeFactor',factor);
-    }
-}
-function decrementFactor() {
-    const doc = document.querySelector(":root");
-    var factor = parseFloat(getComputedStyle(doc).getPropertyValue("--custom-font-factor"));
-    factor -= 0.1;
-    if (factor >= 0.5 && factor <= 2.0) {
-        doc.style.setProperty('--custom-font-factor', factor);
-        window.localStorage.setItem('fontSizeFactor',factor)
     }
 }
 
@@ -34,9 +27,9 @@ function decrementFactor() {
 export function FontSizeButtons() {
     return (
         <React.Fragment>
-            <span className={styles.fontControlButton} onClick={decrementFactor} aria-label="">a</span>
+            <span className={styles.fontControlButton} onClick={()=>incrementDecrementFactor(false)} aria-label="">a</span>
             |
-            <span className={styles.fontControlButton} onClick={incrementFactor} aria-label="">A</span>
+            <span className={styles.fontControlButton} onClick={()=>incrementDecrementFactor(true)} aria-label="">A</span>
         </React.Fragment>
     )
 }

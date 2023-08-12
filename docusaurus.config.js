@@ -62,6 +62,10 @@ const config = {
     themeConfig:
         /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
         ({
+            metadata: [
+                {name: 'description', content: 'Християнски песни за хваление и поклонение'},
+                {name: "keywords", content: "християнски, песни, хваление, поклонение, бог, библия, християнство, християни, акорди, музика, текст, текст на песни, текстове, евангелски песни"}
+            ],
             navbar: {
                 title: 'Песни',
                 // logo: {
@@ -84,6 +88,12 @@ const config = {
                         href: 'https://propovedi.org/pesnarka/',
                         label: 'Песнарка',
                         position: 'right',
+                    },
+                    {
+                        href: 'https://github.com/Rinto-kun/pesni',
+                        position: 'right',
+                        className: 'header-github-link',
+                        'aria-label': 'GitHub repository',
                     },
                 ],
             },
